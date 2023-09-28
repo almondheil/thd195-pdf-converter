@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then 
+if [ $# -ne 1 ]; then
   echo "Must provide a filename (the slideshow as a pdf)"
   exit 1;
 fi
@@ -10,11 +10,11 @@ slideshow=$1
 rm -rf upload
 mkdir -p upload
 
-echo "Converting slides to JPGs..."
+echo "Converting slides to PNGs..."
 
-pdftoppm -jpeg "$slideshow" upload/slide
+pdftoppm -png "$slideshow" upload/slide
 
-echo "Done! Renaming JPGs with roman numerals..."
+echo "Done! Renaming PNGs with roman numerals..."
 
 i=1
 for img in upload/*; do
@@ -27,7 +27,7 @@ for img in upload/*; do
     i_padded=$i
   fi
 
-  newname="upload/${i_padded}-Slide-${roman}.jpg"
+  newname="upload/${i_padded}-Slide-${roman}.png"
   mv "$img" "$newname"
 
   # Increment i
